@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbj6hsi7s6eyp"]
+
+[ext_resource type="Texture2D" uid="uid://cjx3rb2xshcq7" path="res://Assets/fondo pixel 7.jpg" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://caclt7xin2x45" path="res://menu.gd" id="1_ouk20"]
+
+[sub_resource type="FontVariation" id="FontVariation_ouk20"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mae5d"]
+bg_color = Color(0.015686275, 0.015686275, 0.015686275, 0.84705883)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
+bg_color = Color(0.16206557, 0.1620656, 0.16206554, 0.8039216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytr4m"]
+bg_color = Color(0.88235295, 0.88235295, 0.88235295, 0.79607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l48gv"]
+bg_color = Color(0, 0, 0, 0.8509804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecwwl"]
+bg_color = Color(0.1428582, 0.14285824, 0.1428582, 0.79607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kk3ma"]
+bg_color = Color(0.99607843, 0.99607843, 0.99607843, 0.57254905)
+
+[sub_resource type="FontVariation" id="FontVariation_mae5d"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ouk20")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5106012, 0.5106013, 0.5106011, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_lti8b")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -76.5
+offset_right = 118.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 23
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.23529412, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.93333334, 0.93333334, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.41960785, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_ouk20")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ytr4m")
+text = "Jugar"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.44705883, 0.93333334, 0.93333334, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.41960785, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_ouk20")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_l48gv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ecwwl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kk3ma")
+text = "Salir
+"
+
+[node name="Test" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.44705883, 0.93333334, 0.93333334, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.41960785, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_ouk20")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_l48gv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ecwwl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kk3ma")
+text = "Test
+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 23.0
+offset_right = 650.0
+offset_bottom = 133.0
+theme_override_fonts/font = SubResource("FontVariation_mae5d")
+theme_override_font_sizes/font_size = 80
+text = "DEUTOROS"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Test" to="." method="_on_test_pressed"]

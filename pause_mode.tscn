@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://du6squcfd7pdq"]
+
+[ext_resource type="Script" uid="uid://cbtjx37gbtq0d" path="res://pause.gd" id="1_krw08"]
+
+[node name="PauseMode" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_krw08")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5294118)

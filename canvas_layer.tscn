@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://nwst0wct7epf"]
+
+[ext_resource type="Script" uid="uid://bf87lhqlxi3ss" path="res://canvas_layer.gd" id="1_tg4cr"]
+[ext_resource type="Script" uid="uid://nh5leh16pnu5" path="res://color_rect.gd" id="2_37rai"]
+
+[node name="Pausa" type="CanvasLayer"]
+script = ExtResource("1_tg4cr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.43137255)
+script = ExtResource("2_37rai")

@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://bq1vab2bws7wn"]
+
+[ext_resource type="Script" uid="uid://q3vw437wrfts" path="res://jefe.gd" id="1_2w8do"]
+[ext_resource type="Texture2D" uid="uid://32jg0ro2l7ao" path="res://Assets/player.png" id="2_2w8do"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f01e"]
+size = Vector2(121, 140)
+
+[sub_resource type="Animation" id="Animation_rhcje"]
+resource_name = "Animacion"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6.499997, 3), Vector2(6.499997, -9)]
+}
+
+[sub_resource type="Animation" id="Animation_xxh3o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.499997, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwtss"]
+_data = {
+&"Animacion": SubResource("Animation_rhcje"),
+&"RESET": SubResource("Animation_xxh3o")
+}
+
+[sub_resource type="Animation" id="Animation_2w8do"]
+resource_name = "Gravedad_Abajo"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7f01e"]
+resource_name = "Gravedad_Arriba"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_7ho5a"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rhcje"]
+_data = {
+&"Gravedad_Abajo": SubResource("Animation_2w8do"),
+&"Gravedad_Arriba": SubResource("Animation_7f01e"),
+&"RESET": SubResource("Animation_7ho5a")
+}
+
+[node name="jefe" type="CharacterBody2D"]
+script = ExtResource("1_2w8do")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 7)
+shape = SubResource("RectangleShape2D_7f01e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vwtss")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6.499997, 3)
+scale = Vector2(1.2395834, 1.5000001)
+texture = ExtResource("2_2w8do")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rhcje")
+}

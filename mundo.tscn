@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://8qd63tu4uf06"]
+
+[ext_resource type="PackedScene" uid="uid://bq1vab2bws7wn" path="res://jefe.tscn" id="1_lgngo"]
+[ext_resource type="PackedScene" uid="uid://du6squcfd7pdq" path="res://pause_mode.tscn" id="4_otwa2"]
+[ext_resource type="Script" uid="uid://ckmdd8drbup4u" path="res://area_2d_2.gd" id="4_pfhxm"]
+[ext_resource type="Script" uid="uid://bws3wt27mbqug" path="res://area_2d.gd" id="5_aou4a"]
+[ext_resource type="AudioStream" uid="uid://dr4h6caepgmcj" path="res://Sounds/death.mp3" id="5_pij3u"]
+[ext_resource type="Texture2D" uid="uid://dnad72epyljy6" path="res://Assets/fondo pixel 5.jpg" id="6_0oi55"]
+[ext_resource type="PackedScene" uid="uid://m5hshm24cyqk" path="res://floor_tek.tscn" id="7_57gmc"]
+[ext_resource type="AudioStream" uid="uid://ca3nbphyssjho" path="res://Sounds/accion.mp3" id="8_0crsg"]
+[ext_resource type="Script" uid="uid://ctx0bqdhf4ctw" path="res://audio_stream_player_2d.gd" id="9_5g5eo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ckkb"]
+size = Vector2(158, 1081)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwdvv"]
+size = Vector2(5751.5, 172)
+
+[node name="Mundo" type="Node2D"]
+y_sort_enabled = true
+
+[node name="jefe" parent="." instance=ExtResource("1_lgngo")]
+position = Vector2(511, 197)
+
+[node name="PauseMode" parent="." instance=ExtResource("4_otwa2")]
+
+[node name="Continuar" type="Area2D" parent="."]
+script = ExtResource("5_aou4a")
+next_scene_path = "res://mundo_2.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Continuar"]
+position = Vector2(6231, 317)
+shape = SubResource("RectangleShape2D_5ckkb")
+
+[node name="zona muerta" type="Area2D" parent="."]
+script = ExtResource("4_pfhxm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zona muerta"]
+position = Vector2(3278, 918)
+shape = SubResource("RectangleShape2D_lwdvv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="zona muerta"]
+stream = ExtResource("5_pij3u")
+
+[node name="FondoPixel5" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1247, 309)
+scale = Vector2(1.3891667, 1.76)
+texture = ExtResource("6_0oi55")
+
+[node name="FondoPixel6" type="Sprite2D" parent="FondoPixel5"]
+z_index = -1
+position = Vector2(1264.0671, -5.6818166)
+scale = Vector2(1.3891667, 0.95765156)
+texture = ExtResource("6_0oi55")
+
+[node name="FondoPixel5" type="Sprite2D" parent="FondoPixel5"]
+z_index = -1
+position = Vector2(2934.8528, -21.5909)
+scale = Vector2(1.3891667, 0.96049243)
+texture = ExtResource("6_0oi55")
+
+[node name="zona muerta2" type="Area2D" parent="."]
+script = ExtResource("4_pfhxm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zona muerta2"]
+position = Vector2(3276, -276)
+shape = SubResource("RectangleShape2D_lwdvv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="zona muerta2"]
+stream = ExtResource("5_pij3u")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("7_57gmc")]
+position = Vector2(535, -137)
+
+[node name="StaticBody2D" parent="StaticBody2D" instance=ExtResource("7_57gmc")]
+position = Vector2(668, 0)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("7_57gmc")]
+position = Vector2(518, 348)
+
+[node name="StaticBody2D" parent="StaticBody2D2" instance=ExtResource("7_57gmc")]
+position = Vector2(668, 0)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("7_57gmc")]
+position = Vector2(2130, -137)
+
+[node name="StaticBody2D" parent="StaticBody2D3" instance=ExtResource("7_57gmc")]
+position = Vector2(668, 0)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("7_57gmc")]
+position = Vector2(2555, 359)
+
+[node name="StaticBody2D" parent="StaticBody2D4" instance=ExtResource("7_57gmc")]
+position = Vector2(668, 0)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("7_57gmc")]
+position = Vector2(4149, 486)
+
+[node name="StaticBody2D" parent="StaticBody2D5" instance=ExtResource("7_57gmc")]
+position = Vector2(668, 0)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("7_57gmc")]
+position = Vector2(4874, -167)
+
+[node name="StaticBody2D" parent="StaticBody2D6" instance=ExtResource("7_57gmc")]
+position = Vector2(668, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0crsg")
+autoplay = true
+parameters/looping = true
+script = ExtResource("9_5g5eo")
+
+[connection signal="body_entered" from="Continuar" to="Continuar" method="_on_body_entered"]
+[connection signal="body_entered" from="zona muerta" to="zona muerta" method="_on_body_entered"]
+[connection signal="body_entered" from="zona muerta2" to="zona muerta2" method="_on_body_entered"]

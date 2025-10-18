@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwnwrxrx7go0j"]
+
+[ext_resource type="Texture2D" uid="uid://cnnffgnk5e4x8" path="res://Assets/fondo pixel 6.jpg" id="1_uu4g5"]
+[ext_resource type="PackedScene" uid="uid://bq1vab2bws7wn" path="res://jefe.tscn" id="2_eqxnr"]
+[ext_resource type="PackedScene" uid="uid://du6squcfd7pdq" path="res://pause_mode.tscn" id="3_xhlkw"]
+[ext_resource type="Script" uid="uid://bws3wt27mbqug" path="res://area_2d.gd" id="4_n6t2q"]
+[ext_resource type="PackedScene" uid="uid://m5hshm24cyqk" path="res://floor_tek.tscn" id="5_nkm6j"]
+[ext_resource type="Script" uid="uid://ckmdd8drbup4u" path="res://area_2d_2.gd" id="6_k8shw"]
+[ext_resource type="AudioStream" uid="uid://dr4h6caepgmcj" path="res://Sounds/death.mp3" id="7_uk1g5"]
+[ext_resource type="AudioStream" uid="uid://ca3nbphyssjho" path="res://Sounds/accion.mp3" id="8_k8shw"]
+[ext_resource type="Script" uid="uid://ctx0bqdhf4ctw" path="res://audio_stream_player_2d.gd" id="9_uk1g5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pan8f"]
+size = Vector2(158, 1081)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc80n"]
+size = Vector2(5751.5, 172)
+
+[node name="mundo3" type="Node2D"]
+
+[node name="FondoPixel6" type="Sprite2D" parent="."]
+position = Vector2(728, 251)
+scale = Vector2(1.2366667, 1.5054251)
+texture = ExtResource("1_uu4g5")
+
+[node name="FondoPixel6" type="Sprite2D" parent="FondoPixel6"]
+position = Vector2(1340.7008, 0.84506226)
+scale = Vector2(1.2366667, 1.0041506)
+texture = ExtResource("1_uu4g5")
+
+[node name="FondoPixel7" type="Sprite2D" parent="FondoPixel6"]
+position = Vector2(2804.3125, 0.6642688)
+scale = Vector2(1.2366667, 1.0041506)
+texture = ExtResource("1_uu4g5")
+
+[node name="jefe" parent="." instance=ExtResource("2_eqxnr")]
+position = Vector2(66, 101)
+
+[node name="PauseMode" parent="." instance=ExtResource("3_xhlkw")]
+
+[node name="Continuar" type="Area2D" parent="."]
+script = ExtResource("4_n6t2q")
+next_scene_path = "res://mundo.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Continuar"]
+position = Vector2(5196, 199)
+shape = SubResource("RectangleShape2D_pan8f")
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("5_nkm6j")]
+position = Vector2(88, -130)
+
+[node name="StaticBody2D4" parent="StaticBody2D5" instance=ExtResource("5_nkm6j")]
+position = Vector2(679, 0)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("5_nkm6j")]
+position = Vector2(107, 392)
+
+[node name="StaticBody2D4" parent="StaticBody2D6" instance=ExtResource("5_nkm6j")]
+position = Vector2(679, 0)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("5_nkm6j")]
+position = Vector2(1821, -140)
+
+[node name="StaticBody2D4" parent="StaticBody2D7" instance=ExtResource("5_nkm6j")]
+position = Vector2(679, 0)
+
+[node name="StaticBody2D5" parent="StaticBody2D7" instance=ExtResource("5_nkm6j")]
+position = Vector2(886, 696)
+
+[node name="StaticBody2D4" parent="StaticBody2D7/StaticBody2D5" instance=ExtResource("5_nkm6j")]
+position = Vector2(679, 0)
+
+[node name="StaticBody2D5" parent="StaticBody2D7/StaticBody2D5" instance=ExtResource("5_nkm6j")]
+position = Vector2(1063, -564)
+
+[node name="StaticBody2D4" parent="StaticBody2D7/StaticBody2D5/StaticBody2D5" instance=ExtResource("5_nkm6j")]
+position = Vector2(679, 0)
+
+[node name="zona muerta" type="Area2D" parent="."]
+script = ExtResource("6_k8shw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zona muerta"]
+position = Vector2(2797, 765)
+shape = SubResource("RectangleShape2D_yc80n")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="zona muerta"]
+stream = ExtResource("7_uk1g5")
+
+[node name="zona muerta2" type="Area2D" parent="."]
+script = ExtResource("6_k8shw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zona muerta2"]
+position = Vector2(2659, -299)
+shape = SubResource("RectangleShape2D_yc80n")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="zona muerta2"]
+stream = ExtResource("7_uk1g5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_k8shw")
+autoplay = true
+parameters/looping = true
+script = ExtResource("9_uk1g5")
+
+[connection signal="body_entered" from="Continuar" to="Continuar" method="_on_body_entered"]
+[connection signal="body_entered" from="zona muerta" to="zona muerta" method="_on_body_entered"]
+[connection signal="body_entered" from="zona muerta2" to="zona muerta2" method="_on_body_entered"]
