@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwnwrxrx7go0j"]
+[gd_scene load_steps=14 format=3 uid="uid://bwnwrxrx7go0j"]
 
+[ext_resource type="Script" uid="uid://bpe55hhxuri6f" path="res://mundo_3.gd" id="1_uk1g5"]
 [ext_resource type="Texture2D" uid="uid://cnnffgnk5e4x8" path="res://Assets/fondo pixel 6.jpg" id="1_uu4g5"]
 [ext_resource type="PackedScene" uid="uid://bq1vab2bws7wn" path="res://jefe.tscn" id="2_eqxnr"]
 [ext_resource type="PackedScene" uid="uid://du6squcfd7pdq" path="res://pause_mode.tscn" id="3_xhlkw"]
@@ -9,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dr4h6caepgmcj" path="res://Sounds/death.mp3" id="7_uk1g5"]
 [ext_resource type="AudioStream" uid="uid://ca3nbphyssjho" path="res://Sounds/accion.mp3" id="8_k8shw"]
 [ext_resource type="Script" uid="uid://ctx0bqdhf4ctw" path="res://audio_stream_player_2d.gd" id="9_uk1g5"]
+[ext_resource type="PackedScene" uid="uid://b107gd3jww57a" path="res://fps.tscn" id="11_pan8f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pan8f"]
 size = Vector2(158, 1081)
@@ -17,6 +19,7 @@ size = Vector2(158, 1081)
 size = Vector2(5751.5, 172)
 
 [node name="mundo3" type="Node2D"]
+script = ExtResource("1_uk1g5")
 
 [node name="FondoPixel6" type="Sprite2D" parent="."]
 position = Vector2(728, 251)
@@ -101,6 +104,10 @@ stream = ExtResource("8_k8shw")
 autoplay = true
 parameters/looping = true
 script = ExtResource("9_uk1g5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" parent="CanvasLayer" instance=ExtResource("11_pan8f")]
 
 [connection signal="body_entered" from="Continuar" to="Continuar" method="_on_body_entered"]
 [connection signal="body_entered" from="zona muerta" to="zona muerta" method="_on_body_entered"]

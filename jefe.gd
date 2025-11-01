@@ -3,9 +3,9 @@ extends CharacterBody2D
 # Variables configurables
 var gravity_strength: float = 1500.0   # fuerza de gravedad
 var gravity_direction: int = 1         # 1 = abajo, -1 = arriba
-var base_speed: float = 100.0          # velocidad inicial
+var base_speed: float = 1000.0          # velocidad inicial
 var acceleration: float = 60.0         # aceleración
-var max_speed: float = 800.0           # velocidad máxima
+var max_speed: float = 1000.0           # velocidad máxima
 
 func _ready() -> void:
 	# Comienza con la animación de gravedad normal

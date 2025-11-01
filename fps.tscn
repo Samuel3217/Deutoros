@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b107gd3jww57a"]
+
+[ext_resource type="Script" uid="uid://dnbc1ctu8wimy" path="res://label_fps.gd" id="1_3w8p6"]
+
+[node name="FPS" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelFPS" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_3w8p6")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://8qd63tu4uf06"]
+[gd_scene load_steps=14 format=3 uid="uid://8qd63tu4uf06"]
 
 [ext_resource type="PackedScene" uid="uid://bq1vab2bws7wn" path="res://jefe.tscn" id="1_lgngo"]
+[ext_resource type="Script" uid="uid://c31hcyifus6n7" path="res://mundo.gd" id="1_pij3u"]
 [ext_resource type="PackedScene" uid="uid://du6squcfd7pdq" path="res://pause_mode.tscn" id="4_otwa2"]
 [ext_resource type="Script" uid="uid://ckmdd8drbup4u" path="res://area_2d_2.gd" id="4_pfhxm"]
 [ext_resource type="Script" uid="uid://bws3wt27mbqug" path="res://area_2d.gd" id="5_aou4a"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://m5hshm24cyqk" path="res://floor_tek.tscn" id="7_57gmc"]
 [ext_resource type="AudioStream" uid="uid://ca3nbphyssjho" path="res://Sounds/accion.mp3" id="8_0crsg"]
 [ext_resource type="Script" uid="uid://ctx0bqdhf4ctw" path="res://audio_stream_player_2d.gd" id="9_5g5eo"]
+[ext_resource type="PackedScene" uid="uid://b107gd3jww57a" path="res://fps.tscn" id="11_0oi55"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ckkb"]
 size = Vector2(158, 1081)
@@ -18,6 +20,7 @@ size = Vector2(5751.5, 172)
 
 [node name="Mundo" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_pij3u")
 
 [node name="jefe" parent="." instance=ExtResource("1_lgngo")]
 position = Vector2(511, 197)
@@ -111,6 +114,14 @@ stream = ExtResource("8_0crsg")
 autoplay = true
 parameters/looping = true
 script = ExtResource("9_5g5eo")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" parent="CanvasLayer" instance=ExtResource("11_0oi55")]
 
 [connection signal="body_entered" from="Continuar" to="Continuar" method="_on_body_entered"]
 [connection signal="body_entered" from="zona muerta" to="zona muerta" method="_on_body_entered"]
